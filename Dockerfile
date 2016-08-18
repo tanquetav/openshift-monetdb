@@ -40,6 +40,7 @@ RUN chmod +x ${HOME}/init-db.sh
 COPY configs/.monetdb ${HOME}/.monetdb
 
 
+COPY configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 
 

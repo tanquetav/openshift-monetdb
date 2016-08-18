@@ -6,6 +6,7 @@ FARMDIR=/opt/app-root/src/dbfarm
 
 if [ ! -d "${FARMDIR}" ]; then
    monetdbd create ${FARMDIR}
+   monetdbd set listenaddr=0.0.0.0 ${FARMDIR}
 else
     echo "Existing dbfarm found in '${FARMDIR}'"
 fi
