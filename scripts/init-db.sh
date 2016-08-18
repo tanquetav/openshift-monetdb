@@ -2,7 +2,7 @@
 
 #chown -R monetdb:monetdb /var/monetdb5
 
-FARMDIR=/opt/app-root/src/dbfarm
+FARMDIR=/var/monetdb5/db
 
 if [ ! -d "${FARMDIR}" ]; then
    monetdbd create ${FARMDIR}

@@ -49,6 +49,7 @@ COPY ./.s2i/bin/ /usr/libexec/s2i
 
 # TODO: Drop the root user and make the content of /opt/app-root owned by user 1001
 RUN chown -R 1001:1001 ${HOME}
+RUN chown -R 1001:1001 /var/monetdb5
 
 # This default user is created in the openshift/base-centos7 image
 USER 1001
