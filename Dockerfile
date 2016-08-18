@@ -53,7 +53,7 @@ COPY ./.s2i/bin/ /usr/libexec/s2i
 RUN chown -R 1001:0 ${HOME}
 RUN mkdir /var/monetdbdata
 RUN chown -R 1001:0 /var/monetdbdata
-RUN chmod -R 755 /var/monetdbdata
+RUN chmod -R 775 /var/monetdbdata
 
 # This default user is created in the openshift/base-centos7 image
 USER 1001
