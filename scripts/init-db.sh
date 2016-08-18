@@ -36,7 +36,7 @@ if [ ! -d "${FARMDIR}" ]; then
    fi
 
    monetdbd stop ${FARMDIR}
-   sleep 5
+   sleep 10
 #mkdir -p /var/log/monetdb
 #chown -R monetdb:monetdb /var/log/monetdb
 
