@@ -51,9 +51,9 @@ COPY ./.s2i/bin/ /usr/libexec/s2i
 
 # TODO: Drop the root user and make the content of /opt/app-root owned by user 1001
 RUN chown -R 1001:0 ${HOME}
-RUN chown -R 1001:0 /var/monetdb5
-RUN chmod -R 755 /var/monetdb5
-RUN rm  -rf /var/monetdb5/*
+RUN mkdir /var/monetdbdata
+RUN chown -R 1001:0 /var/monetdbdata
+RUN chmod -R 755 /var/monetdbdata
 
 # This default user is created in the openshift/base-centos7 image
 USER 1001
@@ -64,7 +64,7 @@ EXPOSE 50000
 # TODO: Set the default CMD for the image
 # CMD ["usage"]
 
-RUN sh ${HOME}/init-db.sh
+#RUN sh ${HOME}/init-db.sh
 
 
 CMD ["/opt/app-root/src/start.sh"]
