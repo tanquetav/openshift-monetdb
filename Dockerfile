@@ -59,7 +59,6 @@ EXPOSE 50000
 # TODO: Set the default CMD for the image
 # CMD ["usage"]
 
-RUN id
 RUN sh ${HOME}/init-db.sh
 
 
