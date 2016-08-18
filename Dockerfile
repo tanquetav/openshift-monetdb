@@ -36,6 +36,8 @@ RUN chmod +x ${HOME}/set-monetdb-password.sh
 
 COPY scripts/init-db.sh ${HOME}/init-db.sh
 RUN chmod +x ${HOME}/init-db.sh
+COPY scripts/start.sh ${HOME}/start.sh
+RUN chmod +x ${HOME}/start.sh
 
 COPY configs/.monetdb ${HOME}/.monetdb
 
@@ -48,8 +50,10 @@ COPY configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./.s2i/bin/ /usr/libexec/s2i
 
 # TODO: Drop the root user and make the content of /opt/app-root owned by user 1001
-RUN chown -R 1001:1001 ${HOME}
-RUN chown -R 1001:1001 /var/monetdb5
+RUN chown -R 1001:0 ${HOME}
+RUN chown -R 1001:0 /var/monetdb5
+RUN chmod -R 755 /var/monetdb5
+RUN rm  -rf /var/monetdb5/*
 
 # This default user is created in the openshift/base-centos7 image
 USER 1001
@@ -63,5 +67,5 @@ EXPOSE 50000
 RUN sh ${HOME}/init-db.sh
 
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/opt/app-root/src/start.sh"]
 
